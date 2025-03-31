@@ -1,0 +1,19 @@
+<div class="peticiones-container">
+  <h2>Lista de Peticiones</h2>
+
+  <div *ngIf="loading" class="loading">Cargando...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <ul *ngIf="!loading && !error">
+    <li *ngFor="let peticion of peticiones" class="peticion-card">
+      <h3 class="peticion-title">{{ peticion.titulo }}</h3>
+      <p class="peticion-description">{{ peticion.descripcion }}</p>
+      <p class="peticion-destinatario"><strong>Destinatario:</strong> {{ peticion.destinatario }}</p>
+      
+      <img *ngIf="peticion.file" [src]="'http://127.0.0.1:8000/' + peticion.file.file_path" alt="Archivo de la petición">
+
+      
+      <a [routerLink]="['/peticiones', peticion.id]" class="ver-mas-btn">Ver Más</a>
+    </li>
+  </ul>
+</div>
